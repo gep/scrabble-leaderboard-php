@@ -1,0 +1,38 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./conf/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    volumes_from:
+      - php
+    ports:
+      - "8095:80"
+  php:
+    build:
+        context: .
+        dockerfile: phpImage
+#    image: php:fpm
+#    ports:
+#      - "8001:80"
+#      - "9001:9000"
+    volumes:
+#      - ./usr/local/bin:/usr/local/bin
+      - .:/var/www/html
+#      - ./xdebug-docker.ini:/etc/php.d/xdebug.ini
+#      - ./php-cent-os.ini:/etc/php.ini
+#      - ./home_log:/home/log
+#      - ./php53-cent-os.ini:/etc/php.ini
+#      - ./tiuserlogs:/home/tiuser/log
+#      - ./conf/docker/site_custom.conf:/etc/nginx/sites-enabled/default.conf
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3321:3306"
+    volumes:
+      - ./.mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 42
+      MYSQL_USER: scrabble
+      MYSQL_PASSWORD: localpass
+      MYSQL_DATABASE: scrabble

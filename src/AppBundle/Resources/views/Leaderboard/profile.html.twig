@@ -1,0 +1,52 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Leaderboard:profile{% endblock %}
+
+{% block body %}
+    <h1>Scrabble</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>
+                Player name
+            </td>
+            <td>
+                {{ player.name }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Number of wins
+            </td>
+            <td>
+                {{ number_of_wins }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Number of losses
+            </td>
+            <td>
+                {{ number_of_losses }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Average score
+            </td>
+            <td>
+                {{ avg_score }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Highest score data
+            </td>
+            <td>
+                Highest score: {{ highest_score.max_score }}. Opponent name: {{ highest_score.opponent_name }}. When was played: {{ highest_score.game_date|date('Y-m-d H:i:s') }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

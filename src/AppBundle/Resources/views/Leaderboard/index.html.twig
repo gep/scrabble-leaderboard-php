@@ -1,0 +1,42 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Leaderboard:index{% endblock %}
+
+{% block body %}
+    <h1>Scrabble</h1>
+
+    <h2>Leaderboard</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Player name
+            </th>
+            <th>
+                Average score
+            </th>
+            <th>
+                Games played
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for leader in leaders %}
+            <tr>
+                <td>
+                    {{  leader.name}}
+                </td>
+                <td>
+                    {{ leader.average_score }}
+                </td>
+                <td>
+                    {{ leader.times_played}}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
